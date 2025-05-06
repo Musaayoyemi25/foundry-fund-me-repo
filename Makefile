@@ -1,0 +1,1 @@
+#add shortcuts to ourselves so we dont write those long scripts every single time
