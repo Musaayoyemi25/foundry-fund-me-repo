@@ -13,6 +13,7 @@ contract InteractionsTest is Test {
     uint256 constant SEND_VALUE = 0.1 ether;
     uint256 constant STARTING_BALANCE = 10 ether; //10 ETH
     //uint256 constant GAS_PRICE = 1; //1 wei
+
     function setUp() external {
         // us -> FundMeTest -> FundMe
         DeployFundMe deploy = new DeployFundMe();
@@ -32,10 +33,7 @@ contract InteractionsTest is Test {
         fundFundMe.fundFundMe{value: SEND_VALUE}(address(fundMe));
 
         // Verify funding worked
-        assertEq(
-            fundMe.getAddressToAmountFunded(address(fundFundMe)),
-            SEND_VALUE
-        );
+        assertEq(fundMe.getAddressToAmountFunded(address(fundFundMe)), SEND_VALUE);
         assertEq(address(fundMe).balance, SEND_VALUE);
 
         // Withdraw as owner (no broadcast needed in test environment)

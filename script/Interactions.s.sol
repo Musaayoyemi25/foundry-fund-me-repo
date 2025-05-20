@@ -13,16 +13,14 @@ import {FundMe} from "../src/FundMe.sol";
 contract FundFundMe is Script {
     uint256 constant SEND_VALUE = 0.01 ether;
     // Make the function payable
+
     function fundFundMe(address mostRecentlyDeployed) public payable {
         FundMe(payable(mostRecentlyDeployed)).fund{value: msg.value}();
         console.log("Funded FundMe with %s", msg.value);
     }
 
     function run() external {
-        address mostRecentlyDeployed = DevOpsTools.get_most_recent_deployment(
-            "FundMe",
-            block.chainid
-        ); //looks into the folder and finds the run-latest.json file
+        address mostRecentlyDeployed = DevOpsTools.get_most_recent_deployment("FundMe", block.chainid); //looks into the folder and finds the run-latest.json file
         vm.startBroadcast();
         fundFundMe(mostRecentlyDeployed);
         vm.stopBroadcast();
@@ -36,10 +34,7 @@ contract WithdrawFundMe is Script {
     }
 
     function run() external {
-        address mostRecentlyDeployed = DevOpsTools.get_most_recent_deployment(
-            "FundMe",
-            block.chainid
-        ); //looks into the folder and finds the run-latest.json file
+        address mostRecentlyDeployed = DevOpsTools.get_most_recent_deployment("FundMe", block.chainid); //looks into the folder and finds the run-latest.json file
         vm.startBroadcast();
         withdrawFundMe(mostRecentlyDeployed);
         vm.stopBroadcast();

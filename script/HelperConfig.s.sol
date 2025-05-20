@@ -6,6 +6,7 @@
 // Mainnet ETH/USD
 
 pragma solidity ^0.8.18;
+
 import {Script} from "forge-std/Script.sol";
 import {MockV3Aggregator} from "../test/mocks/MockV3Aggregator.sol";
 
@@ -60,10 +61,7 @@ contract HelperConfig is Script {
         // 2. Return the mock address
 
         vm.startBroadcast();
-        MockV3Aggregator mockPriceFeed = new MockV3Aggregator(
-            DECIMALS,
-            INITIAL_PRICE
-        ); //2000
+        MockV3Aggregator mockPriceFeed = new MockV3Aggregator(DECIMALS, INITIAL_PRICE); //2000
         vm.stopBroadcast();
 
         NetworkConfig memory anvilConfig = NetworkConfig({
