@@ -40,7 +40,7 @@ contract HelperConfig is Script {
 
     function getSepoliaEthConfig() public pure returns (NetworkConfig memory) {
         //returns a configuration
-        //for eveerything we need on sepolia
+        //for everything we need on sepolia
         //1. Price feed address
         NetworkConfig memory sepoliaConfig = NetworkConfig({
             priceFeed: 0x694AA1769357215DE4FAC081bf1f309aDC325306 //Sepolia ETH/USD address
